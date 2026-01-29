@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoCar Project - University of Alabama</title>
+    <style>
+        :root {
+            --primary: #9e1b32;
+            --secondary: #828a8f;
+            --accent: #9e1b32;
+            --text: #000000;
+            --text-light: #4a4a4a;
+            --bg: #ffffff;
+            --card-bg: #f5f5f5;
+            --border: #cccccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image:
+                linear-gradient(135deg, rgba(45, 90, 123, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(74, 158, 186, 0.08) 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            box-shadow: 0 4px 20px rgba(158, 27, 50, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-30px) scale(1.05);
+            }
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
+        }
+
+        nav {
+            background: var(--card-bg);
+            border-bottom: 3px solid var(--primary);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 1.25rem 2rem;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            letter-spacing: 0.3px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+            background: rgba(158, 27, 50, 0.05);
+        }
+
+        nav a:hover::after {
+            width: 80%;
+        }
+
+        nav a.active {
+            color: var(--primary);
+            background: rgba(158, 27, 50, 0.08);
+        }
+
+        nav a.active::after {
+            width: 80%;
+        }
+
+        main {
+            padding: 4rem 0;
+        }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 20px rgba(158, 27, 50, 0.15);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section h2::before {
+            content: '';
+            width: 6px;
+            height: 2rem;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .goals-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 1.5rem;
+        }
+
+        .goals-list li {
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.75rem;
+            background: rgba(158, 27, 50, 0.05);
+            border-left: 4px solid var(--primary);
+            border-radius: 4px;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            animation: slideIn 0.5s ease;
+            animation-fill-mode: both;
+        }
+
+        .goals-list li:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .goals-list li:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .goals-list li:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .goals-list li:hover {
+            background: rgba(158, 27, 50, 0.12);
+            transform: translateX(8px);
+            border-left-color: var(--accent);
+        }
+
+        footer {
+            background: var(--text);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav a {
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .section {
+                padding: 2rem 1.5rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>UA EcoCAR DriveAbility Website</h1>
+            <p>University of Alabama - Join the Future of the Adaptive Automotive Industry</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="deliverables.html">Deliverables</a></li>
+            <li><a href="team.html">Team Members</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="container">
+            <section class="section">
+                <h2>Project Overview</h2>
+                <p>
+                    The UA EcoCAR team is developing the DriveAbility website in collaboration with UA's Adapted
+                    Athletics Department to compete in the National EcoCAR Advanced Vehicle Technologies Competition.
+                    The DriveAbility Website is intended to be a trusted resource for individuals with mobility
+                    disabilities to identify adaptive vehicle modifications that suit their needs.
+                    The website will offer a comprehensive database that organizes both quantitative and qualitative
+                    characteristics of various hand-control models, allowing users to easily review key features,
+                    specifications, and compatibility across different accessibility products.
+                </p>
+                <p>
+                    Our approach combines secure web design principles with an intutive, accessible website experience.
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>Project Goals</h2>
+                <ul class="goals-list">
+                    <li><strong>Utility:</strong> Develop creative solutions that inform the adaptive automotive
+                        community about different products and features</li>
+                    <li><strong>Security:</strong> Maintain high standards throughout development with rigorous testing
+                        and review processes</li>
+                    <li><strong>Accessibility:</strong> Deploy an easy, intuitive website experience that meets the
+                        needs and of all users</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 UA EcoCAR DriveAbility Website Team. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

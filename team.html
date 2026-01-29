@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Members - UA EcoCAR DriveAbility Website</title>
+    <style>
+        :root {
+            --primary: #9e1b32;
+            --secondary: #828a8f;
+            --accent: #9e1b32;
+            --text: #000000;
+            --text-light: #4a4a4a;
+            --bg: #ffffff;
+            --card-bg: #f5f5f5;
+            --border: #cccccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image:
+                linear-gradient(135deg, rgba(45, 90, 123, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(74, 158, 186, 0.08) 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            box-shadow: 0 4px 20px rgba(158, 27, 50, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-30px) scale(1.05);
+            }
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
+        }
+
+        nav {
+            background: var(--card-bg);
+            border-bottom: 3px solid var(--primary);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 1.25rem 2rem;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            letter-spacing: 0.3px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+            background: rgba(158, 27, 50, 0.05);
+        }
+
+        nav a:hover::after {
+            width: 80%;
+        }
+
+        nav a.active {
+            color: var(--primary);
+            background: rgba(158, 27, 50, 0.08);
+        }
+
+        nav a.active::after {
+            width: 80%;
+        }
+
+        main {
+            padding: 4rem 0;
+        }
+
+        .intro-section {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .intro-section h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .intro-section h2::before {
+            content: '';
+            width: 6px;
+            height: 2rem;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease;
+            animation-fill-mode: both;
+        }
+
+        .team-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .team-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .team-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .team-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 4px 20px rgba(158, 27, 50, 0.2);
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 240px;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-photo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .team-content {
+            padding: 2rem;
+        }
+
+        .team-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            font-size: 1rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .team-bio {
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+
+        .team-contact {
+            padding-top: 1rem;
+            border-top: 2px solid var(--border);
+        }
+
+        .team-photo {
+            width: 140px;
+            /* Adjust this — common sizes: 120px–180px */
+            height: 140px;
+            border-radius: 50%;
+            /* Circle — remove or set to 12px for rounded square */
+            overflow: hidden;
+            /* Crops anything that overflows */
+            background-color: #f0f0f0;
+            /* Light fallback if image fails */
+            margin: 0 auto 1.2rem;
+            /* Centers it + space below */
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Key property: fills frame, crops edges if needed */
+            object-position: center;
+            /* Centers the face/subject — change to top if needed */
+            display: block;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .contact-link {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #7d1527;
+            text-decoration: underline;
+        }
+
+        footer {
+            background: var(--text);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav a {
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .intro-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>UA EcoCAR DriveAbility Website Team</h1>
+            <p>Meet the people behind the project.</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="deliverables.html">Deliverables</a></li>
+            <li><a href="team.html" class="active">Team Members</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="container">
+            <section class="intro-section">
+                <h2>About Our Team</h2>
+                <p>
+                    Our team brings together expertise from various disciplines to tackle complex challenges
+                    and deliver innovative solutions. Each member contributes unique skills and perspectives that
+                    strengthen our collaborative approach to project success.
+                </p>
+            </section>
+
+            <div class="team-grid">
+                <!-- Team Member 1 -->
+                <article class="team-card">
+                    <div class="team-photo">
+                        <!-- <img src="images/ryan-photo.jpg" alt="Ryan - Backend Developer">-->
+                        <span>RD</span>
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Ryan Douglas</h3>
+                        <p class="team-role">Backend Developer</p>
+                        <p class="team-bio">
+                            Ryan Douglas is a senior at the University of Alabama, majoring in computer science and
+                            mathematics.
+                            He intends to pursue his master's degree in computer science in the fall.
+                            In his free time, he enjoys probabilistic card games, playing guitar, and reading fantasy
+                            books.
+                        </p>
+                        <div class="team-contact">
+                            <div class="contact-item">
+                                <span class="contact-icon">✉</span>
+                                <a href="rcdouglas@crimson.ua.edu" class="contact-link">rcdouglas@crimson.ua.edu</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Team Member 2 -->
+                <article class="team-card">
+                    <div class="team-photo">
+                        <img src="images/Headshot_Colleen.png" alt="Colleen - Frontend Developer">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Colleen Grimshaw</h3>
+                        <p class="team-role">Frontend Developer</p>
+                        <p class="team-bio">
+                            Colleen Grimshaw: Computer Science Major
+                        </p>
+                        <div class="team-contact">
+                            <div class="contact-item">
+                                <span class="contact-icon">✉</span>
+                                <a href="crgrimshaw@crimson.ua.edu" class="contact-link">crgrimshaw@crimson.ua.edu</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Team Member 3 -->
+                <article class="team-card">
+                    <div class="team-photo">
+                        <img src="images/headshot_daniel.jpg" alt="Daniel - Fullstack Developer">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Daniel Szurek</h3>
+                        <p class="team-role">Fullstack Developer</p>
+                        <p class="team-bio">
+                            Accelerated Master's student in Computer Science leading autonomous vehicle development at
+                            the University of Alabama's EcoCAR team. Currently directing a 15-student team in developing
+                            advanced driver assistance systems (ADAS) including lane-keep assist, adaptive cruise
+                            control, and V2X connectivity, with active research in Model Predictive Control,
+                            Reinforcement Learning, and Gaussian Processes for efficiency optimization.
+                            I've also had data science experience from my internships with SSAB and Brasfield & Gorrie,
+                            where I leveraged real company data to create actionable business insights.
+                            When I'm not coding, you can find me practicing my guitar and piano skills, traveling to new
+                            places, and reading (usually the Dune series)!
+                        </p>
+                        <div class="team-contact">
+                            <div class="contact-item">
+                                <span class="contact-icon">✉</span>
+                                <a href="https://www.danielszurek.com/"
+                                    class="contact-link">https://www.danielszurek.com/</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Team Member 4 -->
+                <article class="team-card">
+                    <div class="team-photo">
+                        <img src="images/sam_frat_head.jpg" alt="Samuel - Backend Developer">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Samuel Wisnoff</h3>
+                        <p class="team-role">Backend Developer</p>
+                        <p class="team-bio">
+                            Senior computer science student graduating May 2026 with M.S and B.S in Computer Science.
+                            Loves nature, cats, and large chocolate chip cookies.
+                            Recently started starving himself due to eating too many cookies.
+                        </p>
+                        <div class="team-contact">
+                            <div class="contact-item">
+                                <span class="contact-icon">✉</span>
+                                <a href="slwisnoff@crimson.ua.edu" class="contact-link">slwisnoff@crimson.ua.edu</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-photo">
+                        <img src="images/Headshot_Nicholas.jpg" alt="Nicholas - Frontend Developer">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Nicholas Yaeger</h3>
+                        <p class="team-role">Frontend Developer</p>
+                        <p class="team-bio">
+                            I am Nicholas Yeager, an AMP Computer Science and philosophy student.
+                            I have a special interest in WebDev and the ethics of Artificial Intelligence.
+                            I enjoy hiking, playing video games, and reading.
+                        </p>
+                        <div class="team-contact">
+                            <div class="contact-item">
+                                <span class="contact-icon">✉</span>
+                                <a href="nmyeager@crimson.ua.edu" class="contact-link">nmyeager@crimson.ua.edu</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 UA EcoCAR DriveAbility Website Team. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
